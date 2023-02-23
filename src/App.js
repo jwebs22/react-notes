@@ -6,6 +6,13 @@ import React, { Component } from 'react';
 */
 import Table from './Table' 
 import Form from './Form'
+import Clock from './Clock'
+
+//components can also be functional 
+// {} evaluate javascript code
+function Welcome(props){
+  return <h1>Welcome, {props.name}</h1>
+}
 
 class App extends Component {
     // set initial state of component 
@@ -33,7 +40,7 @@ class App extends Component {
     removeCharacter = (index) => {
     //now that we've defined this.state, we can use 
         const { characters } = this.state 
-
+    
         // we can use setState to update the state 
         this.setState({
             // remove character at passed in index by returning 
@@ -43,16 +50,6 @@ class App extends Component {
             }),
         })
     } 
-
-    // // create method to add a character 
-    // addCharacter = (name_, job) => {
-
-    //   this.characters.push({name: name_, });
-    //   this.setState({
-    //     characters: this.characters
-    //   });
-    // }
-
     //we add the handle submit here , because 
     //the characters are in here 
     // NOTE ON SYNTAX: passing a character to addCharacter 
@@ -61,9 +58,15 @@ class App extends Component {
     addCharacter = character => {
       this.setState({characters: [...this.state.characters, character ]})
     } 
+    
+    //delete all the characters 
+    removeAllCharacters = () => {
+      this.setState({characters:[]})
+    }
 
     /* you always have a render function
      in a component. */ 
+
     render() {
 
       // make sure return only returns one html element!  
@@ -72,15 +75,21 @@ class App extends Component {
       // so table can use it later on 
       return (
         <div className="container"> 
+          <Welcome name="Dom"/>
+          <Clock />
           <Table 
             characterData={this.state.characters} 
             removeCharacter={this.removeCharacter} 
+            removeAllCharacters={this.removeAllCharacters}
           /> 
           <Form addCharacter={this.addCharacter}/>
         </div>
       )
     }
   }
+
+
+
 
 // make it accessible to the rest of your application
 export default App
