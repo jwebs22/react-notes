@@ -19,10 +19,7 @@
  our table code more readable
  */
  
- //DELETE ALL BUTTON Simple Component
- const DeleteAllButton = (props) => {
-   return <button onClick={() => props.removeAllCharacters()}> Delete All</button>
- }
+ 
  
  
  //TABLE HEADER SIMPLE COMPONENT
@@ -63,13 +60,10 @@
          //read props passed in from App.js
          const { 
            characterData, 
-           removeCharacter,
-           removeAllCharacters
+           removeCharacter
          } = this.props;
  
-         return (
-           <div id="table">
-           <DeleteAllButton removeAllCharacters={removeAllCharacters}/> 
+         return ( 
            <table>
              <TableHeader/>
              <TableBody 
@@ -77,7 +71,6 @@
                removeCharacter={removeCharacter}
               />
            </table>
-           </div>
          )
        }
   }
